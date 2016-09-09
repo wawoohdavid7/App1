@@ -29,6 +29,7 @@ namespace App1.Core
          catch (Exception ex)
          {
             //Debug.WriteLine("Error resolving page");
+            throw new Exception("page not resolved");
             return null;
          }
 

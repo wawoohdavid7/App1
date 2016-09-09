@@ -10,6 +10,8 @@ namespace App1.Core
    {
       MainPage,
       Page2,
-      TabbedMasterPage
+      TabbedMasterPage,
+      ListPage,
+      Settings
    }
 }

@@ -42,8 +42,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ListPageRootViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Page2ViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageRootViewModel.cs" />
     <Compile Include="ViewModels\TabbedMasterPageViewModel.cs" />
     <Compile Include="Views\ListPageRoot.xaml.cs">
       <DependentUpon>ListPageRoot.xaml</DependentUpon>

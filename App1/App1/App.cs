@@ -78,10 +78,33 @@ namespace App1
       private void InitializeTabbedPage()
       {
          var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as TabbedPage;
-         page.Children.Add(new SettingsPageRoot());
-         page.Children.Add(new ListPageRoot());
+
+         var rootPages = GetIndexedRootPages().OrderBy(o => o.Key);
+         
+         //page.Children.Add(new SettingsPageRoot());
+         //page.Children.Add(new ListPageRoot());
+
+
+         foreach (var pgkey in rootPages)
+         {
+            var pg = _pageResolver.ResolvePage(pgkey.Value);
+            page.Children.Add(pg);
+         }
+
          MainPage = page;
       }
+
+      private Dictionary<int, object> GetIndexedRootPages()
+      {
+         //List<Tuple<int, object>> indexedRootPageList = new List<Tuple<int, object>>();
+         Dictionary<int, object> indexedRootPageList = new Dictionary<int, object>();
+         indexedRootPageList.Add(0, PageKeys.Settings);
+         indexedRootPageList.Add(1, PageKeys.ListPage);
+
+         return indexedRootPageList;
+      }
+
+
 
       //public static Page RootPage { get; set; }
       protected override void OnStart()

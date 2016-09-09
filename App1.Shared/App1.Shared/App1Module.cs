@@ -38,13 +38,18 @@ namespace App1.Shared
 
       private void RegisterViews()
       {
+         _builder.RegisterType<ListPageRoot>().Keyed<Page>(PageKeys.ListPage).SingleInstance();
+         _builder.RegisterType<SettingsPageRoot>().Keyed<Page>(PageKeys.Settings).SingleInstance();
          _builder.RegisterType<MainPage>().Keyed<Page>(PageKeys.MainPage).SingleInstance();
          _builder.RegisterType<Page2>().Keyed<Page>(PageKeys.Page2).SingleInstance();
          _builder.RegisterType<TabbedMasterPage>().Keyed<Page>(PageKeys.TabbedMasterPage).SingleInstance();
+
       }
 
       private void RegisterViewModel()
       {
+         _builder.RegisterType<ListPageRootViewModel>().Keyed<ViewModelBase>(PageKeys.ListPage).SingleInstance();
+         _builder.RegisterType<SettingsPageRootViewModel>().Keyed<ViewModelBase>(PageKeys.Settings).SingleInstance();
          _builder.RegisterType<MainPageViewModel>().Keyed<ViewModelBase>(PageKeys.MainPage).SingleInstance();
          _builder.RegisterType<Page2ViewModel>().Keyed<ViewModelBase>(PageKeys.Page2).SingleInstance();
          _builder.RegisterType<TabbedMasterPageViewModel>().Keyed<ViewModelBase>(PageKeys.TabbedMasterPage).SingleInstance();
