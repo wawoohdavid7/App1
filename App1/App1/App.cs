@@ -1,4 +1,5 @@
 ﻿using App1.Core;
+using App1.Utils;
 using App1.Views;
 using Autofac;
 using System;
@@ -16,23 +17,24 @@ namespace App1
       private readonly INavigationService _navigationService;
       private readonly IPageResolver _pageResolver;
       private readonly IAppNavigation _appNavigation;
-      public App(ILifetimeScope lifetimeScope, INavigationService navigationService, IPageResolver pageResolver, IAppNavigation appNavigation)
+      private readonly IPageUtil _pageUtil;
+      public App(ILifetimeScope lifetimeScope, INavigationService navigationService, IPageResolver pageResolver, IAppNavigation appNavigation, IPageUtil pageUtil)
       {
          _lifetimeScope = lifetimeScope;
          _navigationService = navigationService;
          _pageResolver = pageResolver;
          _appNavigation = appNavigation;
-         //try
-         //{
-         //  var t = _lifetimeScope.ResolveKeyed<Page>(PageKeys.MainPage);
-         //   var k = "";
-         //}
-         //catch (Exception ex)
-         //{
-         //}
+         _pageUtil = pageUtil;
+
+         //DOTest(PageKeys.ListPage);
       }
 
       #region Pang tesst lang
+
+      private void Testing()
+      {
+      }
+
       //private void Testing()
       //{
       //   List<Calendar> calendarList = new List<Calendar>()
@@ -75,36 +77,31 @@ namespace App1
       //}
       #endregion Pang tesst lang
 
+
+      private void DOTest(PageKeys pageKey) 
+      {
+
+        
+
+      }
+
       private void InitializeTabbedPage()
       {
-         var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as TabbedPage;
+         //var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as TabbedPage;
+         //var rootPages = _pageUtil.GetIndexedRootPages().OrderBy(o => o.Item1);
 
-         var rootPages = GetIndexedRootPages().OrderBy(o => o.Key);
-         
-         //page.Children.Add(new SettingsPageRoot());
-         //page.Children.Add(new ListPageRoot());
+         //foreach (var pg in rootPages)
+         //{
+         //   page.Children.Add(pg.Item2);
+         //}
 
+         var page = new TabbedMasterPage();
 
-         foreach (var pgkey in rootPages)
-         {
-            var pg = _pageResolver.ResolvePage(pgkey.Value);
-            page.Children.Add(pg);
-         }
+         page.Children.Add(new SettingsPageRoot());
+         page.Children.Add(new ListPageRoot());
 
          MainPage = page;
       }
-
-      private Dictionary<int, object> GetIndexedRootPages()
-      {
-         //List<Tuple<int, object>> indexedRootPageList = new List<Tuple<int, object>>();
-         Dictionary<int, object> indexedRootPageList = new Dictionary<int, object>();
-         indexedRootPageList.Add(0, PageKeys.Settings);
-         indexedRootPageList.Add(1, PageKeys.ListPage);
-
-         return indexedRootPageList;
-      }
-
-
 
       //public static Page RootPage { get; set; }
       protected override void OnStart()

@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
-namespace App1.Core
+namespace App1.Utils
 {
-   public enum PageKeys
+   public interface IPageUtil
    {
-      MainPage,
-      Page2,
-      TabbedMasterPage,
-      ListPage,
-      Settings
+      List<Tuple<int, Page>> GetIndexedRootPages();
    }
 }

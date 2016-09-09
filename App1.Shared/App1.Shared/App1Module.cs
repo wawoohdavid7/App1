@@ -1,4 +1,5 @@
 ﻿using App1.Core;
+using App1.Utils;
 using App1.ViewModels;
 using App1.Views;
 using Autofac;
@@ -26,9 +27,8 @@ namespace App1.Shared
          _builder.RegisterType<AppNavigation>().As<IAppNavigation>().SingleInstance();
          _builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
          _builder.RegisterType<PageResolver>().As<IPageResolver>().SingleInstance();
-         
 
-
+         _builder.RegisterType<PageUtil>().As<IPageUtil>().SingleInstance();
 
       }
 

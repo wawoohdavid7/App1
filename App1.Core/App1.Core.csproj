@@ -37,9 +37,7 @@
   <ItemGroup>
     <Compile Include="INavigationService.cs" />
     <Compile Include="IPageResolver.cs" />
-    <Compile Include="IResolvedPage.cs" />
     <Compile Include="NavigationService.cs" />
-    <Compile Include="PageKeys.cs" />
     <Compile Include="PageNames.cs" />
     <Compile Include="PageResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
