@@ -85,26 +85,40 @@ namespace App1
 
       }
 
+      Page CurrentPage { get; set; }
+
       private void InitializeTabbedPage()
       {
-         //var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as TabbedPage;
-         //var rootPages = _pageUtil.GetIndexedRootPages().OrderBy(o => o.Item1);
+        //var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as TabbedPage;
+        var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as CustomTabbedPage;
 
-         //foreach (var pg in rootPages)
-         //{
-         //   page.Children.Add(pg.Item2);
-         //}
+        //page.CurrentPageChanged += OnCurrentPageChanged;
 
-         var page = new TabbedMasterPage();
+         var rootPages = _pageUtil.GetIndexedRootPages().OrderBy(o => o.Item1);
 
-         page.Children.Add(new SettingsPageRoot());
-         page.Children.Add(new ListPageRoot());
+        //TODO: put to CustomTabbedPage
+        foreach (var pg in rootPages)
+         {
+            page.Children.Add(pg.Item2);
+         }
 
          MainPage = page;
+        //_navigationService.Navigation = page.Children[0].Navigation;
       }
 
-      //public static Page RootPage { get; set; }
-      protected override void OnStart()
+        private void OnCurrentPageChanged(object sender, EventArgs e)
+        {
+            var s = (TabbedPage)sender;
+            var cur = s.CurrentPage;
+            var isNav = cur is NavigationPage;
+            if (isNav)
+            {
+                _navigationService.Navigation = cur.Navigation;
+            }
+        }
+
+        //public static Page RootPage { get; set; }
+        protected override void OnStart()
       {
          base.OnStart();
          //Testing();

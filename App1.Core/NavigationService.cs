@@ -20,19 +20,27 @@ namespace App1.Core
       public Task PushPageAsync(object pageKey)
       {
          var page = _pageResolver.ResolvePage(pageKey);
+
          return Navigation.PushAsync(page);
       }
 
       public async Task PopToRootPageAsync(object rootPageKey = null)
       {
-         //         if (rootPageKey == null) return Navigation.PopToRootAsync();
-         if (rootPageKey == null) await Navigation.PopToRootAsync();
+        //         if (rootPageKey == null) return Navigation.PopToRootAsync();
+        if (rootPageKey == null)
+        {
+            await Navigation.PopToRootAsync();
+        }
+        else
+        {
+            var app = Application.Current;
 
-         var app = Application.Current;
+            var page = _pageResolver.ResolvePage(rootPageKey);
 
-         var page = _pageResolver.ResolvePage(rootPageKey);
+            app.MainPage = page;
 
-         app.MainPage = page;
+        }
+
       }
 
    }

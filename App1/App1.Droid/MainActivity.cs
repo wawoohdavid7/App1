@@ -17,8 +17,9 @@ namespace App1.Droid
       //public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
       protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            //ToolbarResource = Resource.Layout.Toolbar;
+
+         FormsAppCompatActivity.ToolbarResource = Resource.Layout.toolbar;
+         FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
             base.OnCreate(bundle);
          

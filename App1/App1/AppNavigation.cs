@@ -21,7 +21,12 @@ namespace App1
          await _navigationService.PushPageAsync(PageKeys.Page2);
       }
 
-      public async Task PopToRootPageAsync(object rootPageKey = null)
+        public async Task GotoPage3()
+        {
+            await _navigationService.PushPageAsync(PageKeys.Page3);
+        }
+
+        public async Task PopToRootPageAsync(object rootPageKey = null)
       {
          await _navigationService.PopToRootPageAsync(rootPageKey);
       }

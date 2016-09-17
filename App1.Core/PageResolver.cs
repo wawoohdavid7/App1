@@ -16,13 +16,25 @@ namespace App1.Core
          _lifetimeScope = lifetimeScope;
       }
 
+        public Page ResolveTabbedPage(Object tabKey)
+        {
+            return ResolvePage(tabKey) as CustomTabbedPage;
+        }
+
+
       public Page ResolvePage(Object key)
       {
          try
          {
             var page = _lifetimeScope.ResolveKeyed<Page>(key);
-            var vm = _lifetimeScope.ResolveKeyed<ViewModelBase>(key);
-            page.BindingContext = vm;
+            //var vm = _lifetimeScope.ResolveKeyed<ViewModelBase>(key);
+            //page.BindingContext = vm;
+
+            if (_lifetimeScope.IsRegisteredWithKey<ViewModelBase>(key))
+            {
+                var vm = _lifetimeScope.ResolveKeyed<ViewModelBase>(key);
+                page.BindingContext = vm;
+            }
 
             return page;
          }

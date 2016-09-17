@@ -24,8 +24,12 @@ namespace App1.Utils
 
          List<Tuple<int, Page>> indexedRootPageList = new List<Tuple<int, Page>>();
 
-         indexedRootPageList.Add(new Tuple<int, Page>(1,settingsPageRoot));
-         indexedRootPageList.Add(new Tuple<int, Page>(0, listPageRoot));
+         indexedRootPageList.Add(new Tuple<int, Page>(1, new NavigationPage(settingsPageRoot) { Title = "Settings."}));
+         indexedRootPageList.Add(new Tuple<int, Page>(0, new NavigationPage(listPageRoot) { Title = "ListPage."}));
+
+         //indexedRootPageList.Add(new Tuple<int, Page>(1, settingsPageRoot));
+         //indexedRootPageList.Add(new Tuple<int, Page>(0, listPageRoot));
+
 
          return indexedRootPageList;
       }

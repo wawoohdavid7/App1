@@ -42,17 +42,20 @@ namespace App1.Shared
          _builder.RegisterType<SettingsPageRoot>().Keyed<Page>(PageKeys.Settings).SingleInstance();
          _builder.RegisterType<MainPage>().Keyed<Page>(PageKeys.MainPage).SingleInstance();
          _builder.RegisterType<Page2>().Keyed<Page>(PageKeys.Page2).SingleInstance();
-         _builder.RegisterType<TabbedMasterPage>().Keyed<Page>(PageKeys.TabbedMasterPage).SingleInstance();
+         _builder.RegisterType<Page3>().Keyed<Page>(PageKeys.Page3).SingleInstance();
+        //_builder.RegisterType<TabbedMasterPage>().Keyed<Page>(PageKeys.TabbedMasterPage).SingleInstance();
+        //CustomTabbedPage
+          _builder.RegisterType<CustomTabbedPage>().Keyed<Page>(PageKeys.TabbedMasterPage).SingleInstance();
+        }
 
-      }
-
-      private void RegisterViewModel()
+        private void RegisterViewModel()
       {
          _builder.RegisterType<ListPageRootViewModel>().Keyed<ViewModelBase>(PageKeys.ListPage).SingleInstance();
          _builder.RegisterType<SettingsPageRootViewModel>().Keyed<ViewModelBase>(PageKeys.Settings).SingleInstance();
          _builder.RegisterType<MainPageViewModel>().Keyed<ViewModelBase>(PageKeys.MainPage).SingleInstance();
          _builder.RegisterType<Page2ViewModel>().Keyed<ViewModelBase>(PageKeys.Page2).SingleInstance();
-         _builder.RegisterType<TabbedMasterPageViewModel>().Keyed<ViewModelBase>(PageKeys.TabbedMasterPage).SingleInstance();
+         _builder.RegisterType<Page3ViewModel>().Keyed<ViewModelBase>(PageKeys.Page3).SingleInstance();
+         //_builder.RegisterType<TabbedMasterPageViewModel>().Keyed<ViewModelBase>(PageKeys.TabbedMasterPage).SingleInstance();
 
          _builder.RegisterType<App>().As<Xamarin.Forms.Application>().SingleInstance();
 

@@ -10,6 +10,7 @@ namespace App1
    {
       MainPage,
       Page2,
+      Page3,
       TabbedMasterPage,
       ListPage,
       Settings

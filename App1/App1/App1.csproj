@@ -48,6 +48,7 @@
     <Compile Include="ViewModels\ListPageRootViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\Page2ViewModel.cs" />
+    <Compile Include="ViewModels\Page3ViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageRootViewModel.cs" />
     <Compile Include="ViewModels\TabbedMasterPageViewModel.cs" />
     <Compile Include="Views\ListPageRoot.xaml.cs">
@@ -55,6 +56,9 @@
     </Compile>
     <Compile Include="Views\Page2.xaml.cs">
       <DependentUpon>Page2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Page3.xaml.cs">
+      <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPageRoot.xaml.cs">
       <DependentUpon>SettingsPageRoot.xaml</DependentUpon>
@@ -120,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ListPageRoot.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Page3.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
