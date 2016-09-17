@@ -7,13 +7,14 @@ using Xamarin.Forms;
 
 namespace App1
 {
-   public interface IAppNavigation
-   {
-      Task GotoPage2();
-      Task GotoPage3();
+    public interface IAppNavigation
+    {
+        Task GotoPage2();
+        Task GotoPage3();
 
-      Task PopToRootPageAsync(object rootPageKey = null);
+        //Task PopToRootPageAsync(object rootPageKey = null);
+        Task PopToRootPageAsync();
 
         void InitializeMainPage();
-   }
+    }
 }

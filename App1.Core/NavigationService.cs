@@ -7,41 +7,36 @@ using Xamarin.Forms;
 
 namespace App1.Core
 {
-   public class NavigationService : INavigationService
-   {
-      private readonly IPageResolver _pageResolver;
-      public NavigationService(IPageResolver pageResolver)
-      {
-         _pageResolver = pageResolver;
-      }
 
-      public INavigation Navigation { get; set; }
+    /// <summary>
+    /// Page navigation service.
+    /// </summary>
+    public class NavigationService : INavigationService
+    {
+        private readonly IPageResolver _pageResolver;
 
-      public Task PushPageAsync(object pageKey)
-      {
-         var page = _pageResolver.ResolvePage(pageKey);
+        public NavigationService(IPageResolver pageResolver)
+        {
+            _pageResolver = pageResolver;
+        }
 
-         return Navigation.PushAsync(page);
-      }
+        public INavigation Navigation { get; set; }
 
-      public async Task PopToRootPageAsync(object rootPageKey = null)
-      {
-        //         if (rootPageKey == null) return Navigation.PopToRootAsync();
-        if (rootPageKey == null)
+        /// <summary>
+        /// Navigation to page asynchronously.
+        /// </summary>
+        /// <param name="pageKey">The page key as a value in page names enum.</param>
+        /// <returns>Task.</returns>
+        public Task PushPageAsync(object pageKey)
+        {
+            var page = _pageResolver.ResolvePage(pageKey);
+
+            return Navigation.PushAsync(page);
+        }
+
+        public async Task PopToRootPageAsync()
         {
             await Navigation.PopToRootAsync();
         }
-        else
-        {
-            var app = Application.Current;
-
-            var page = _pageResolver.ResolvePage(rootPageKey);
-
-            app.MainPage = page;
-
-        }
-
-      }
-
    }
 }

@@ -1,50 +1,46 @@
 ﻿using Autofac;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace App1.Core
 {
-   public class PageResolver : IPageResolver
-   {
-      private readonly ILifetimeScope _lifetimeScope;
-      public PageResolver(ILifetimeScope lifetimeScope)
-      {
-         _lifetimeScope = lifetimeScope;
-      }
+    public class PageResolver : IPageResolver
+    {
+        private readonly ILifetimeScope _lifetimeScope;
 
-        public Page ResolveTabbedPage(Object tabKey)
+        public PageResolver(ILifetimeScope lifetimeScope)
         {
-            return ResolvePage(tabKey) as CustomTabbedPage;
+            _lifetimeScope = lifetimeScope;
         }
 
-
-      public Page ResolvePage(Object key)
-      {
-         try
-         {
-            var page = _lifetimeScope.ResolveKeyed<Page>(key);
-            //var vm = _lifetimeScope.ResolveKeyed<ViewModelBase>(key);
-            //page.BindingContext = vm;
-
-            if (_lifetimeScope.IsRegisteredWithKey<ViewModelBase>(key))
+        /// <summary>
+        /// Gets the resolved page and automatically binded to its view model.
+        /// </summary>
+        /// <param name="key">The key of the page as a value in page names enum.</param>
+        /// <returns><see cref="Page"/>.</returns>
+        public Page ResolvePage(Object key)
+        {
+            try
             {
-                var vm = _lifetimeScope.ResolveKeyed<ViewModelBase>(key);
-                page.BindingContext = vm;
+                var page = _lifetimeScope.ResolveKeyed<Page>(key);
+
+                if (_lifetimeScope.IsRegisteredWithKey<ViewModelBase>(key))
+                {
+                    var vm = _lifetimeScope.ResolveKeyed<ViewModelBase>(key);
+                    page.BindingContext = vm;
+                }
+
+                return page;
             }
-
-            return page;
-         }
-         catch (Exception ex)
-         {
-            //Debug.WriteLine("Error resolving page");
-            throw new Exception("page not resolved");
-            return null;
-         }
-
+            catch (Exception ex)
+            {
+                string errorMsg = $"Error resolving {key}";
+                Debug.WriteLine(errorMsg);
+                throw new Exception(errorMsg);
+            
+                return null;
+            }
       }
    }
 }
