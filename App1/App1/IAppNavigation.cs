@@ -13,5 +13,7 @@ namespace App1
       Task GotoPage3();
 
       Task PopToRootPageAsync(object rootPageKey = null);
+
+        void InitializeMainPage();
    }
 }

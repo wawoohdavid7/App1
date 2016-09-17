@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CustomTabbedPage.cs" />
+    <Compile Include="IIndexedRootPageRetriever.cs" />
     <Compile Include="INavigationService.cs" />
     <Compile Include="IPageResolver.cs" />
     <Compile Include="NavigationService.cs" />

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="RootPageRetriever.cs" />
     <Compile Include="Utils\PageUtil.cs" />
     <Compile Include="AppNavigation.cs" />
     <Compile Include="IAppNavigation.cs" />

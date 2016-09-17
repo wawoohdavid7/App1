@@ -10,10 +10,29 @@ namespace App1.Core
     public class CustomTabbedPage : TabbedPage
     {
         private readonly INavigationService _navigationService;
-        public CustomTabbedPage(INavigationService navigationService)
+        private readonly IIndexedRootPageRetriever _rootPageRetriever;
+
+        public CustomTabbedPage(INavigationService navigationService, IIndexedRootPageRetriever rootPageRetriever)
         {
             _navigationService = navigationService;
+            _rootPageRetriever = rootPageRetriever;
+
             CurrentPageChanged += OnCurrentPageChanged;
+        }
+
+        public void InitializeTabbedPage()
+        {
+            PopulateTabs();
+        }
+
+        private void PopulateTabs()
+        {
+            var rootPages = _rootPageRetriever.GetIndexedRootPageList();
+
+            foreach (var pg in rootPages)
+            {
+                Children.Add(pg.Item2);
+            }
         }
 
         private void OnCurrentPageChanged(object sender, EventArgs e)

@@ -1,39 +1,21 @@
-﻿using App1.Core;
-using App1.Utils;
-using App1.Views;
-using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace App1
 {
     public class App : Application
     {
-      private readonly ILifetimeScope _lifetimeScope;
-      private readonly INavigationService _navigationService;
-      private readonly IPageResolver _pageResolver;
-      private readonly IAppNavigation _appNavigation;
-      private readonly IPageUtil _pageUtil;
-      public App(ILifetimeScope lifetimeScope, INavigationService navigationService, IPageResolver pageResolver, IAppNavigation appNavigation, IPageUtil pageUtil)
-      {
-         _lifetimeScope = lifetimeScope;
-         _navigationService = navigationService;
-         _pageResolver = pageResolver;
-         _appNavigation = appNavigation;
-         _pageUtil = pageUtil;
+        #region Fields
 
-         //DOTest(PageKeys.ListPage);
-      }
+        private readonly IAppNavigation _appNavigation;
+
+        #endregion Fields
+
+        public App(IAppNavigation appNavigation)
+        {
+            _appNavigation = appNavigation;
+        }
 
       #region Pang tesst lang
-
-      private void Testing()
-      {
-      }
 
       //private void Testing()
       //{
@@ -77,76 +59,23 @@ namespace App1
       //}
       #endregion Pang tesst lang
 
-
-      private void DOTest(PageKeys pageKey) 
-      {
-
-        
-
-      }
-
-      Page CurrentPage { get; set; }
-
-      private void InitializeTabbedPage()
-      {
-        //var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as TabbedPage;
-        var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as CustomTabbedPage;
-
-        //page.CurrentPageChanged += OnCurrentPageChanged;
-
-         var rootPages = _pageUtil.GetIndexedRootPages().OrderBy(o => o.Item1);
-
-        //TODO: put to CustomTabbedPage
-        foreach (var pg in rootPages)
-         {
-            page.Children.Add(pg.Item2);
-         }
-
-         MainPage = page;
-        //_navigationService.Navigation = page.Children[0].Navigation;
-      }
-
-        private void OnCurrentPageChanged(object sender, EventArgs e)
+        protected override void OnStart()
         {
-            var s = (TabbedPage)sender;
-            var cur = s.CurrentPage;
-            var isNav = cur is NavigationPage;
-            if (isNav)
-            {
-                _navigationService.Navigation = cur.Navigation;
-            }
+            base.OnStart();
+            InitializeMainPage();
         }
 
-        //public static Page RootPage { get; set; }
-        protected override void OnStart()
-      {
-         base.OnStart();
-         //Testing();
-
-         //MainPage = new MainPage();
-         try
-         {
-            //var page = _pageResolver.ResolvePage(PageKeys.MainPage);
-            //MainPage = new NavigationPage(page);
-            //_navigationService.Navigation = MainPage.Navigation;
-
-            //_navigationService.Navigation = MainPage.Navigation;
-            //var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage);
-
+        private void InitializeMainPage()
+        {
+            //var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as CustomTabbedPage;
+            //page.InitializeTabbedPage();
 
             //MainPage = page;
 
+            _appNavigation.InitializeMainPage();
+        }
 
-            //_appNavigation.PopToRootPageAsync(PageKeys.TabbedMasterPage);
-
-            InitializeTabbedPage();
-
-         }
-         catch (Exception ex)
-         {
-         }
-      }
-   }
+    }
 
 
 }

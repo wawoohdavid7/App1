@@ -22,17 +22,17 @@ namespace App1.Shared
          RegisterViewModel();
       }
 
-      private void RegisterServices()
-      {
-         _builder.RegisterType<AppNavigation>().As<IAppNavigation>().SingleInstance();
-         _builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
-         _builder.RegisterType<PageResolver>().As<IPageResolver>().SingleInstance();
+        private void RegisterServices()
+        {
+            _builder.RegisterType<AppNavigation>().As<IAppNavigation>().SingleInstance();
+            _builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            _builder.RegisterType<PageResolver>().As<IPageResolver>().SingleInstance();
 
-         _builder.RegisterType<PageUtil>().As<IPageUtil>().SingleInstance();
+            _builder.RegisterType<PageUtil>().As<IPageUtil>().SingleInstance();
+            _builder.RegisterType<RootPageRetriever>().As<IIndexedRootPageRetriever>().SingleInstance();
+        }
 
-      }
-
-      private void RegisterManagers()
+        private void RegisterManagers()
       {
       }
 
