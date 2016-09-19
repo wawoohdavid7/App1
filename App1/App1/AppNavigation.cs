@@ -31,7 +31,7 @@ namespace App1
 
         public void InitializeMainPage()
         {
-            var page = _pageResolver.ResolvePage(PageKeys.TabbedMasterPage) as CustomTabbedPage;
+            var page = _pageResolver.ResolveTabbedMainPage();
             page.InitializeTabbedPage();
 
             App.Current.MainPage = page;

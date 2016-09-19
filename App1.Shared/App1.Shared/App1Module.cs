@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace App1.Shared
+namespace App1.Core
 {
    public class App1Module : Module
    {
@@ -26,8 +26,8 @@ namespace App1.Shared
 
         private void RegisterServices()
         {
-            _builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
-            _builder.RegisterType<PageResolver>().As<IPageResolver>().SingleInstance();
+            //_builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            //_builder.RegisterType<PageResolver>().As<IPageResolver>().SingleInstance();
 
             _builder.RegisterType<AppNavigation>().As<IAppNavigation>().SingleInstance();
             _builder.RegisterType<PageUtil>().As<IPageUtil>().SingleInstance();
@@ -40,8 +40,7 @@ namespace App1.Shared
 
         private void RegisterViews()
         {
-            //_builder.RegisterType<TabbedMasterPage>().Keyed<Page>(PageKeys.TabbedMasterPage).SingleInstance();
-            _builder.RegisterType<CustomTabbedPage>().Keyed<Page>(PageKeys.TabbedMasterPage).SingleInstance();
+            //_builder.RegisterType<CustomTabbedPage>().As<TabbedPage>().SingleInstance();
 
             _builder.RegisterType<ListPageRoot>().Keyed<Page>(PageKeys.ListPage).SingleInstance();
             _builder.RegisterType<SettingsPageRoot>().Keyed<Page>(PageKeys.Settings).SingleInstance();

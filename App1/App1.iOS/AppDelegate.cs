@@ -4,7 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
-using App1.Shared;
+using App1.Core;
 
 namespace App1.iOS
 {

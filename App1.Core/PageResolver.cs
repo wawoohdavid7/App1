@@ -14,6 +14,11 @@ namespace App1.Core
             _lifetimeScope = lifetimeScope;
         }
 
+        public CustomTabbedPage ResolveTabbedMainPage()
+        {
+            return _lifetimeScope.Resolve<TabbedPage>() as CustomTabbedPage;
+        }
+
         /// <summary>
         /// Gets the resolved page and automatically binded to its view model.
         /// </summary>
